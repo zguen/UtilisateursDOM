@@ -1,6 +1,7 @@
 const userCards = document.getElementById("user");
 const buttonPage = document.getElementById("pagesAutres");
-let currentPage = 1
+let currentPage = 1;
+let totalPages = 0;
 
 
 // Récupération données
@@ -9,9 +10,10 @@ const getData = async (page) => {
         const response = await fetch(`https://reqres.in/api/users?page=${page}`);
         const data = await response.json();
 
+        totalPages = data.total_pages;
         userCards.innerHTML = "";
 
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < data.date.lenght; i++) {
             userCards.innerHTML += `<div class="card">
             <img src="${data.data[i].avatar} " alt=""/>
             <h3>NOM: ${data.data[i].last_name}</h3>
@@ -28,8 +30,8 @@ const getData = async (page) => {
 //Bouton users suivants
 buttonPage.addEventListener("click", (event) => {
     event.preventDefault();
-    if (currentPage === 1) {
-        currentPage = 2;
+    if (currentPage < totalPages) {
+        currentPage++;
     } else {
         currentPage = 1;
     }
