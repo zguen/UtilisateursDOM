@@ -13,7 +13,7 @@ const getData = async (page) => {
         totalPages = data.total_pages;
         userCards.innerHTML = "";
 
-        for (let i = 0; i < data.date.lenght; i++) {
+        for (let i = 0; i < data.data.length; i++) {
             userCards.innerHTML += `<div class="card">
             <img src="${data.data[i].avatar} " alt=""/>
             <h3>NOM: ${data.data[i].last_name}</h3>
